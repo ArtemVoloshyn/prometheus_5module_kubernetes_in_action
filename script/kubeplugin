@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/bin/bash 
 
 # Define command-line arguments
 
-RESOURCE_TYPE=$0
-
+RESOURCE_TYPE=$3
+FIRST="${1:-top}" #if no argument take top
+SECOND="${2:-pod}"
+THIRD="${3:-kube-system}"
 # Retrieve resource usage statistics from Kubernetes
-kubectl $2 $RESOURCE_TYPE -n $1 | tail -n +2 | while read line
+kubectl $FIRST $SECOND -n $THIRD | tail -n +2 | while read line
 do
   # Extract CPU and memory usage from the output
   NAME=$(echo $line | awk '{print $1}')
@@ -13,5 +15,6 @@ do
   MEMORY=$(echo $line | awk '{print $3}')
 
   # Output the statistics to the console
-  # "Resource, Namespace, Name, CPU, Memory"
+  echo "Resource         Namespace   Name, CPU, Memory"
+  echo $SECOND $THIRD $NAME $CPU $MEMORY
 done
