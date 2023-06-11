@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-job
+spec:
+  containers:
+  - name: my-app-job
+    image: my-app-image
+    command: ["/bin/sh", "-c", "echo 'Hello World!'"]
