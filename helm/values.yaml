@@ -8,6 +8,7 @@ image:
   repository: voloshynartem
   tag: "v1.0.5-4740140"
   arch: amd64
+  os:linux
 
 secret:
   name: kbot
